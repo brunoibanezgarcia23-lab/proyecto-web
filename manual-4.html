@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad 4: Configuración de Switch</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+  <!-- ── Header ─────────────────────────────────────────────── -->
+ <header>
+       <p class="autores">Daniel Cantos / Bruno Ibáñez / Rodrigo García</p>
+        <nav class="navbar">
+            <a href="index.html" style="color:white; text-decoration:none; font-weight:bold; font-size:18px;">Mis Manuales</a>
+            <ul class="nav-links">
+                <li><a href="actividad1.html">Act. 1</a></li>
+                <li><a href="actividad2.html">Act. 2</a></li>
+                <li><a href="manual-3.html">Act. 3</a></li>
+                <li><a href="manual-4.html">Act. 4</a></li>
+                <li><a href="Actividad_5_Configuracion_Servicios.html">Act. 5</a></li>
+                <li><a href="A6_sistemas_operativos_nas.html">NAS – SO</a></li>
+                <li><a href="A6_copias_seguridad_nas.html">NAS – Backup</a></li>
+                <li><a href="A6_ftps_nas.html">NAS – FTPS</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 2. CONTENIDO -->
+    <main class="contenido-manual">
+        <article>
+
+            <header class="guia-header">
+                <h1>Actividad 4: Configuración de Switch</h1>
+                <p class="subtitulo">Practicas Act 4 - Documentación</p>
+            </header>
+
+            <!-- INTRODUCCIÓN -->
+            <section class="guia-seccion">
+                <h2>1. Introducción</h2>
+                <p>
+                    En esta actividad configuramos un switch gestionable TP-Link (modelo SG3210) accediendo a su panel
+                    de administración web. El proceso incluye la configuración IP del equipo para acceder al switch,
+                    el acceso al panel de control y la creación de VLANs.
+                </p>
+            </section>
+
+            <!-- MATERIALES -->
+            <section class="guia-seccion">
+                <h2>2. Materiales utilizados</h2>
+                <ul>
+                    <li>Switch TP-Link SG3210</li>
+                    <li>Cable de red</li>
+                    <li>Ordenador con navegador web</li>
+                </ul>
+            </section>
+
+            <!-- PASO 1 -->
+            <section class="guia-seccion">
+                <h2>3. Configuración de la IP del equipo</h2>
+                <p>
+                    Para acceder al panel del switch es necesario que el equipo esté en la misma red que el dispositivo.
+                    El switch tiene por defecto la IP <strong>192.168.0.1</strong>, por lo que configuramos el adaptador
+                    Ethernet del PC con los siguientes parámetros:
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parámetro</th>
+                            <th>Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Dirección IP</td><td>192.168.0.2</td></tr>
+                        <tr><td>Máscara de subred</td><td>255.255.255.0</td></tr>
+                        <tr><td>Puerta de enlace</td><td>192.168.0.1</td></tr>
+                    </tbody>
+                </table>
+                <p>
+                    Accedemos a esta configuración desde Panel de control → Redes e Internet → Centro de redes y
+                    recursos compartidos → Propiedades del adaptador Ethernet → Protocolo de Internet versión 4 (TCP/IPv4).
+                </p>
+                <div class="captura">
+                    <img src="images4/switch_imagen1.png" alt="Configuración IP del adaptador Ethernet">
+                    <p>Captura 1 - Configuración de la IP del adaptador Ethernet del PC</p>
+                </div>
+            </section>
+
+            <!-- PASO 2 -->
+            <section class="guia-seccion">
+                <h2>4. Acceso al panel de administración</h2>
+                <p>
+                    Con la IP configurada, abrimos el navegador y accedemos a <strong>192.168.0.1</strong>.
+                    Nos aparece la pantalla de login del switch TP-Link. Introducimos las credenciales por defecto:
+                </p>
+                <ul>
+                    <li><strong>Username:</strong> admin</li>
+                    <li><strong>Password:</strong> admin</li>
+                </ul>
+                <div class="captura">
+                    <img src="images4/switch_imagen2.png" alt="Login del switch TP-Link">
+                    <p>Captura 2 - Pantalla de login del switch TP-Link (192.168.0.1)</p>
+                </div>
+            </section>
+
+            <!-- PASO 3 -->
+            <section class="guia-seccion">
+                <h2>5. Configuración de VLANs</h2>
+                <p>
+                    Una vez dentro del panel, accedemos a <strong>L2 Features → VLAN → 802.1Q VLAN → VLAN Config</strong>.
+                    Aquí se pueden ver y gestionar todas las VLANs del switch. En nuestro caso teníamos configuradas
+                    las siguientes:
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>VLAN ID</th>
+                            <th>Nombre</th>
+                            <th>Puertos miembro</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1</td><td>System-VLAN</td><td>1/0/1-10</td></tr>
+                        <tr><td>90</td><td>Palade</td><td>1/0/1-3</td></tr>
+                        <tr><td>100</td><td>CANTOS</td><td>1/0/1, 1/0/4-5</td></tr>
+                    </tbody>
+                </table>
+                <div class="captura">
+                    <img src="images4/switch_imagen3.png" alt="Lista de VLANs configuradas">
+                    <p>Captura 3 - Vista general de las VLANs configuradas en el switch</p>
+                </div>
+            </section>
+
+            <!-- PASO 4 -->
+            <section class="guia-seccion">
+                <h2>6. Creación de una nueva VLAN</h2>
+                <p>
+                    Para crear una nueva VLAN pulsamos el botón <strong>Add</strong> dentro de VLAN Config.
+                    Rellenamos los campos con los datos de la VLAN que queremos crear. En este caso creamos la
+                    VLAN 100 con el nombre CANTOS, asignando puertos sin etiquetar (Untagged) y con etiqueta (Tagged):
+                </p>
+                <ul>
+                    <li><strong>VLAN ID:</strong> 100</li>
+                    <li><strong>VLAN Name:</strong> CANTOS</li>
+                    <li><strong>Untagged Ports:</strong> 1/0/1</li>
+                    <li><strong>Tagged Ports:</strong> 1/0/4-5</li>
+                </ul>
+                <p>
+                    Una vez configurado pulsamos <strong>Create</strong> para guardar la VLAN.
+                </p>
+                <div class="captura">
+                    <img src="images4/switch_imagen4.png" alt="Creación de VLAN 100 CANTOS">
+                    <p>Captura 4 - Formulario de creación de la VLAN 100 (CANTOS)</p>
+                </div>
+            </section>
+
+            <!-- RESULTADO -->
+            <section class="guia-seccion">
+                <h2>7. Resultado</h2>
+                <p>
+                    Tras seguir los pasos, conseguimos acceder correctamente al panel de administración del switch
+                    y configurar las VLANs necesarias. La configuración quedó guardada en el dispositivo.
+                </p>
+            </section>
+        </article>
+    </main>
+
+    <!-- 3. PIE DE PÁGINA -->
+    <footer class="footer">
+        <p>&copy; 2026 - Creado por Bruno, Rodrigo y Compañero. Todos los derechos reservados.</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

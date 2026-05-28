@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Operativos para NAS</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+  <header>
+    <p class="actividad">Actividad 6: Investigación NAS</p>
+    <h1>Sistemas Operativos para NAS</h1>
+    <p class="autores">Daniel C · Bruno I · Rodrigo G</p>
+  </header>
+
+  <!-- ── Header ─────────────────────────────────────────────── -->
+ <header>
+       <p class="autores">Daniel Cantos / Bruno Ibáñez / Rodrigo García</p>
+        <nav class="navbar">
+            <a href="index.html" style="color:white; text-decoration:none; font-weight:bold; font-size:18px;">Mis Manuales</a>
+            <ul class="nav-links">
+                <li><a href="actividad1.html">Act. 1</a></li>
+                <li><a href="actividad2.html">Act. 2</a></li>
+                <li><a href="manual-3.html">Act. 3</a></li>
+                <li><a href="manual-4.html">Act. 4</a></li>
+                <li><a href="Actividad_5_Configuracion_Servicios.html">Act. 5</a></li>
+                <li><a href="A6_sistemas_operativos_nas.html">NAS – SO</a></li>
+                <li><a href="A6_copias_seguridad_nas.html">NAS – Backup</a></li>
+                <li><a href="A6_ftps_nas.html">NAS – FTPS</a></li>
+            </ul>
+        </nav>
+    </header>
+
+  <main>
+
+    <section id="introduccion">
+      <h2>1. Introducción</h2>
+      <p>Un NAS (Network Attached Storage) es un dispositivo de almacenamiento en red que centraliza el acceso a datos para múltiples usuarios y dispositivos. El sistema operativo que utiliza determina directamente su rendimiento, nivel de seguridad y las funcionalidades disponibles para el administrador.</p>
+    </section>
+
+    <section id="caracteristicas">
+      <h2>2. Características Clave de un SO para NAS</h2>
+      <p>Los sistemas operativos diseñados para NAS deben cumplir una serie de requisitos fundamentales:</p>
+      <ul>
+        <li>Sistemas de archivos robustos con integridad de datos (ZFS, Btrfs, ext4)</li>
+        <li>Protocolos de red compatibles con distintos sistemas: SMB, NFS, AFP</li>
+        <li>Gestión de RAID por software o hardware</li>
+        <li>Soporte nativo de snapshots para protección ante borrados accidentales</li>
+        <li>Soporte para contenedores (Docker) y máquinas virtuales</li>
+        <li>Bajo consumo de recursos del sistema</li>
+      </ul>
+    </section>
+
+    <section id="principales">
+      <h2>3. Principales Sistemas Operativos</h2>
+
+      <article>
+        <h3>3.1 TrueNAS SCALE</h3>
+        <p>El más completo y seguro del mercado. Gratuito y de código abierto, está orientado a entornos empresariales y usuarios avanzados. Basado en Linux con sistema de archivos ZFS, ofrece replicación, snapshots, contenedores Docker y máquinas virtuales de forma nativa.</p>
+      </article>
+
+      <article>
+        <h3>3.2 Synology DSM</h3>
+        <p>El sistema operativo más fácil de usar. Su interfaz gráfica intuitiva lo hace ideal para usuarios domésticos y pymes. La principal limitación es que está restringido al hardware del propio fabricante Synology, lo que eleva el coste inicial.</p>
+      </article>
+
+      <article>
+        <h3>3.3 OpenMediaVault</h3>
+        <p>La mejor opción para hardware de bajo coste o equipos reciclados. Basado en Debian Linux, es totalmente gratuito y extensible mediante plugins. Ideal para laboratorios caseros y usuarios con conocimientos técnicos medios.</p>
+      </article>
+
+      <article>
+        <h3>3.4 Unraid</h3>
+        <p>Destaca por su flexibilidad para combinar discos de distintos tamaños sin necesidad de que sean iguales, algo imposible en RAID tradicional. Requiere licencia de pago. Muy popular en entornos de gaming, streaming y pequeña empresa.</p>
+      </article>
+
+      <article>
+        <h3>3.5 Proxmox VE</h3>
+        <p>Aunque no es un SO NAS en sentido estricto, se usa frecuentemente para virtualización avanzada. Permite ejecutar TrueNAS u OpenMediaVault como máquinas virtuales dentro de un entorno más amplio de virtualización.</p>
+      </article>
+    </section>
+
+    <section id="comparativa">
+      <h2>4. Tabla Comparativa</h2>
+      <p>A continuación se presenta un resumen comparativo de los principales sistemas operativos para NAS:</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Sistema Operativo</th>
+            <th>Licencia</th>
+            <th>Nivel</th>
+            <th>S. Archivos</th>
+            <th>Punto Fuerte</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>TrueNAS SCALE</td>
+            <td>Gratuito</td>
+            <td>Empresarial</td>
+            <td>ZFS</td>
+            <td>Seguridad y robustez</td>
+          </tr>
+          <tr>
+            <td>TrueNAS CORE</td>
+            <td>Gratuito</td>
+            <td>Avanzado</td>
+            <td>ZFS</td>
+            <td>BSD + ZFS maduro</td>
+          </tr>
+          <tr>
+            <td>Synology DSM</td>
+            <td>Propietario</td>
+            <td>Doméstico/Pyme</td>
+            <td>Btrfs/ext4</td>
+            <td>Facilidad de uso</td>
+          </tr>
+          <tr>
+            <td>OpenMediaVault</td>
+            <td>Gratuito</td>
+            <td>Intermedio</td>
+            <td>ext4/Btrfs</td>
+            <td>Hardware reciclado</td>
+          </tr>
+          <tr>
+            <td>Unraid</td>
+            <td>Pago</td>
+            <td>Doméstico/Pyme</td>
+            <td>XFS/Btrfs</td>
+            <td>Flexibilidad de discos</td>
+          </tr>
+          <tr>
+            <td>Proxmox VE</td>
+            <td>Gratuito/Pago</td>
+            <td>Empresarial</td>
+            <td>ZFS/ext4</td>
+            <td>Virtualización avanzada</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="criterios">
+      <h2>5. Criterios de Selección</h2>
+      <p>La elección del sistema operativo más adecuado depende del uso previsto y el perfil del administrador:</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Escenario</th>
+            <th>SO Recomendado</th>
+            <th>Motivo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Uso doméstico sencillo</td>
+            <td>Synology DSM</td>
+            <td>Interfaz amigable, sin curva de aprendizaje</td>
+          </tr>
+          <tr>
+            <td>Laboratorio casero</td>
+            <td>Unraid / TrueNAS SCALE</td>
+            <td>Flexibilidad y aprendizaje técnico</td>
+          </tr>
+          <tr>
+            <td>Hardware reciclado</td>
+            <td>OpenMediaVault</td>
+            <td>Bajo consumo, soporte amplio de hardware</td>
+          </tr>
+          <tr>
+            <td>Entorno empresarial</td>
+            <td>TrueNAS SCALE</td>
+            <td>ZFS, alta disponibilidad, seguridad</td>
+          </tr>
+          <tr>
+            <td>Virtualización avanzada</td>
+            <td>Proxmox VE</td>
+            <td>Gestión de VMs y contenedores integrada</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="seguridad">
+      <h2>6. Consideraciones de Seguridad</h2>
+      <p>Independientemente del sistema operativo elegido, es fundamental aplicar las siguientes prácticas de seguridad:</p>
+      <ul>
+        <li>Usar VPN en lugar de exponer los servicios directamente a Internet</li>
+        <li>Activar el doble factor de autenticación (2FA) en el panel de administración</li>
+        <li>Configurar snapshots automáticos como protección ante ransomware</li>
+        <li>Mantener el sistema operativo y los paquetes actualizados</li>
+        <li>Restringir el acceso por firewall a IPs o redes autorizadas</li>
+      </ul>
+    </section>
+
+    <section id="tendencias">
+      <h2>7. Tendencias y Futuro</h2>
+      <p>El mercado de los sistemas operativos para NAS evoluciona de forma constante hacia:</p>
+      <ul>
+        <li>Mayor integración con servicios en la nube (cloud tiering, hybrid storage)</li>
+        <li>Almacenamiento de alta velocidad con interfaces NVMe y redes 10GbE/25GbE</li>
+        <li>Gestión con inteligencia artificial para detección de anomalías y optimización</li>
+        <li>Mayor presencia de contenedores y microservicios en dispositivos NAS</li>
+        <li>Proliferación de redes de alta velocidad en entornos domésticos</li>
+      </ul>
+    </section>
+
+    <section id="conclusion">
+      <h2>8. Conclusión</h2>
+      <p>La elección del sistema operativo para NAS depende del uso previsto, el presupuesto disponible y el nivel técnico del administrador. No existe una opción universalmente superior: TrueNAS SCALE lidera en seguridad y prestaciones, Synology DSM en usabilidad, OpenMediaVault en versatilidad con hardware reciclado, y Unraid en flexibilidad. La clave está en identificar el escenario concreto y elegir el SO que mejor se adapte a él.</p>
+    </section>
+
+  </main>
+
+  <footer>
+    <h2>Bibliografía</h2>
+    <ul>
+      <li><strong>TrueNAS SCALE:</strong> <a href="https://www.truenas.com/docs/scale/" target="_blank">https://www.truenas.com/docs/scale/</a></li>
+      <li><strong>Synology DSM:</strong> <a href="https://kb.synology.com/en-uk/UG/Syno_UsersGuide_NAServer_7_2/1" target="_blank">Guía de usuario</a> · <a href="https://www.synology.com/en-us/dsm/7.3/software_spec/dsm" target="_blank">Especificaciones</a></li>
+      <li><strong>OpenMediaVault:</strong> <a href="https://www.openmediavault.org/" target="_blank">Sitio oficial</a> · <a href="https://docs.openmediavault.org/en/8.x/" target="_blank">Documentación</a></li>
+      <li><strong>Unraid:</strong> <a href="https://docs.unraid.net/" target="_blank">https://docs.unraid.net/</a></li>
+      <li><strong>Proxmox VE:</strong> <a href="https://pve.proxmox.com/wiki/Introduction" target="_blank">Wiki</a> · <a href="https://pve.proxmox.com/pve-docs/pve-admin-guide.pdf" target="_blank">Admin Guide (PDF)</a></li>
+    </ul>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>

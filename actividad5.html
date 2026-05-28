@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Actividad 5 — Configuración de Servicios WEB-FTP</title>
+  <link rel="stylesheet" href="estilos.css" />
+</head>
+
+<body>
+
+  <!-- ── Header ─────────────────────────────────────────────── -->
+    <header>
+       <p class="autores">Daniel Cantos / Bruno Ibáñez / Rodrigo García</p>
+        <nav class="navbar">
+            <a href="index.html" style="color:white; text-decoration:none; font-weight:bold; font-size:18px;">Mis Manuales</a>
+            <ul class="nav-links">
+                <li><a href="actividad1.html">Act. 1</a></li>
+                <li><a href="actividad2.html">Act. 2</a></li>
+                <li><a href="manual-3.html">Act. 3</a></li>
+                <li><a href="manual-4.html">Act. 4</a></li>
+                <li><a href="Actividad5.html">Act. 5</a></li>
+                <li><a href="A6_sistemas_operativos_nas.html">NAS – SO</a></li>
+                <li><a href="A6_copias_seguridad_nas.html">NAS – Backup</a></li>
+                <li><a href="A6_ftps_nas.html">NAS – FTPS</a></li>
+            </ul>
+        </nav>
+    </header>
+
+  <!-- ══ ÍNDICE AL INICIO ════════════════════════════════════ -->
+  <div class="toc-container">
+    <h2>Contenido</h2>
+    <ol>
+      <li><a href="#intro">Actualización del sistema</a></li>
+      <li><a href="#apache">Servicio Apache2</a></li>
+      <li><a href="#ftp">Servicio FTP (vsftpd)</a></li>
+      <li><a href="#ufw">Cortafuegos UFW</a></li>
+    </ol>
+  </div>
+
+  <!-- ══ LAYOUT ══════════════════════════════════════════════ -->
+  <div class="page-layout">
+
+    <!-- ── MAIN ────────────────────────────────────────────── -->
+    <main>
+
+      <!-- ── 1. INTRO / ACTUALIZACIÓN ──────────────────────── -->
+      <section id="intro">
+        <h2>Actualización del sistema</h2>
+        <p>Antes de instalar cualquier servicio, actualizamos los repositorios de nuestro servidor para asegurarnos de tener los paquetes más recientes.</p>
+        <article>
+          <h3>Actualizar repositorios</h3>
+          <div class="cmd-block">sudo apt update && sudo apt upgrade -y</div>
+        </article>
+      </section>
+
+      <!-- ── 2. APACHE2 ─────────────────────────────────────── -->
+      <section id="apache">
+        <h2>Servicio Apache2 (HTTP)</h2>
+        <p>Ya tenemos instalado el servicio Apache2 de la actividad anterior. A continuación se muestra cómo instalarlo, verificarlo y comprobar su funcionamiento.</p>
+
+        <article>
+          <h3>Instalación</h3>
+          <div class="cmd-block">sudo apt install apache2 -y</div>
+
+          <h4>Verificación del servicio</h4>
+          <div class="cmd-block">sudo systemctl status apache2</div>
+          <figure class="img-wrap">
+            <img src="images5/image1.jpeg" alt="Estado del servicio Apache2" />
+            <figcaption>Estado del servicio Apache2 activo en systemctl</figcaption>
+          </figure>
+        </article>
+
+        <article>
+          <h3>Comprobación en el navegador</h3>
+          <p>Abrimos el navegador web e ingresamos la IP de nuestro servidor para verificar que Apache2 responde correctamente:</p>
+          <figure class="img-wrap">
+            <img src="images5/image2.jpeg" alt="Página de bienvenida de Apache2" />
+            <figcaption>Página de bienvenida de Apache2 en el navegador</figcaption>
+          </figure>
+        </article>
+
+        <article>
+          <h3>Directorio raíz</h3>
+          <p>Los archivos de nuestra web se guardan en <code>/var/www/html/</code>. El contenido por defecto del <code>index.html</code> es el siguiente:</p>
+          <figure class="img-wrap">
+            <img src="images5/image3.jpeg" alt="Contenido del index.html por defecto" />
+            <figcaption>Contenido del <code>index.html</code> por defecto</figcaption>
+          </figure>
+        </article>
+      </section>
+
+      <!-- ── 3. FTP ─────────────────────────────────────────── -->
+      <section id="ftp">
+        <h2>Instalación y Configuración del Servicio FTP</h2>
+        <p>Instalamos <strong>vsftpd</strong> (Very Secure FTP Daemon) para gestionar la transferencia de archivos de forma segura.</p>
+
+        <article>
+          <h3>Instalamos el servicio</h3>
+          <div class="cmd-block">sudo apt install vsftpd -y</div>
+        </article>
+
+        <article>
+          <h3>Configuramos el archivo principal</h3>
+          <p>Abrimos el archivo de configuración:</p>
+          <div class="cmd-block">sudo nano /etc/vsftpd.conf</div>
+          <p>Modificamos o añadimos las siguientes líneas para permitir la escritura y aislar a los usuarios:</p>
+          <ul>
+            <li><strong><code>anonymous_enable=NO</code></strong> — Desactiva el acceso anónimo</li>
+            <li><strong><code>local_enable=YES</code></strong> — Permite el acceso a usuarios locales de Ubuntu</li>
+            <li><strong><code>write_enable=YES</code></strong> — Permite subir y modificar archivos</li>
+            <li><strong><code>chroot_local_user=YES</code></strong> — Bloquea a los usuarios en su carpeta de inicio por seguridad</li>
+          </ul>
+          <figure class="img-wrap">
+            <img src="images5/image4.jpeg" alt="Configuración del archivo vsftpd.conf" />
+            <figcaption>Configuración del archivo <code>vsftpd.conf</code></figcaption>
+          </figure>
+        </article>
+
+        <article>
+          <h3>Corregimos permisos y reiniciamos</h3>
+          <p>Por seguridad, vsftpd no permite iniciar sesión si la carpeta raíz del usuario tiene permisos de escritura compartidos. Ejecutamos los siguientes comandos:</p>
+          <div class="cmd-block">sudo mkdir -p /home/usuario/ftp/files 
+            sudo chown -R nobody:nogroup /home/usuario/ftp
+            sudo chmod a-w /home/usuario/ftp
+            sudo chown -R usuario:usuario /home/usuario/ftp/files</div>
+
+          <p>Añadimos al final de <code>/etc/vsftpd.conf</code>:</p>
+          <div class="cmd-block"> 
+            user_sub_token=$USER
+            local_root=/home/$USER/ftp
+          </div>
+
+          <figure class="img-wrap">
+            <img src="images5/image5.jpeg" alt="Directivas user_sub_token y local_root en vsftpd.conf" />
+            <figcaption>Directivas <code>user_sub_token</code> y <code>local_root</code> en <code>vsftpd.conf</code></figcaption>
+          </figure>
+
+          <h4>Reiniciamos el servicio</h4>
+          <div class="cmd-block">sudo systemctl restart vsftpd</div>
+          <figure class="img-wrap">
+            <img src="images5/image6.jpeg" alt="Reinicio del servicio vsftpd" />
+            <figcaption>Reinicio y estado del servicio vsftpd</figcaption>
+          </figure>
+        </article>
+      </section>
+
+      <!-- ── 4. UFW ─────────────────────────────────────────── -->
+      <section id="ufw">
+        <h2>Configuramos el Cortafuegos (UFW)</h2>
+        <p>Abrimos los puertos necesarios para que tanto el servidor web como el FTP sean accesibles desde la red.</p>
+
+        <article>
+          <h3>Permitimos la Web</h3>
+          <div class="cmd-block">sudo ufw allow 'Apache Full'</div>
+          <figure class="img-wrap">
+            <img src="images5/image7.jpeg" alt="Regla UFW para Apache Full" />
+            <figcaption>Regla UFW para Apache Full (puertos 80 y 443)</figcaption>
+          </figure>
+        </article>
+
+        <article>
+          <h3>Permitimos el FTP</h3>
+          <div class="cmd-block">sudo ufw allow 20/tcp sudo ufw allow 21/tcp</div>
+          <figure class="img-wrap">
+            <img src="images5/image8.jpeg" alt="Reglas UFW para FTP" />
+            <figcaption>Reglas UFW para FTP (puertos 20 y 21)</figcaption>
+          </figure>
+        </article>
+
+        <article>
+          <h3>Aplicamos los cambios</h3>
+          <div class="cmd-block">sudo ufw reload</div>
+          <figure class="img-wrap">
+            <img src="images5/image9.jpeg" alt="Recarga de UFW" />
+            <figcaption>Recarga de las reglas UFW</figcaption>
+          </figure>
+          <figure class="img-wrap">
+            <img src="images5/image6.jpeg" alt="Estado final de los servicios" />
+            <figcaption>Estado final de los servicios tras recargar UFW</figcaption>
+          </figure>
+          <figure class="img-wrap">
+            <img src="images5/image10.jpeg" alt="Comprobación final" />
+            <figcaption>Comprobación final del entorno</figcaption>
+          </figure>
+        </article>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ══ FOOTER ══════════════════════════════════════════════ -->
+  <footer class="site-footer">
+    Actividad 5 · Configuración de Servicios WEB-FTP · Prácticas
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

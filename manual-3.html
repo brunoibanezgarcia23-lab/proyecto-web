@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad 3: Construcción de Latiguillos</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+  <!-- ── Header ─────────────────────────────────────────────── -->
+ <header>
+       <p class="autores">Daniel Cantos / Bruno Ibáñez / Rodrigo García</p>
+        <nav class="navbar">
+            <a href="index.html" style="color:white; text-decoration:none; font-weight:bold; font-size:18px;">Mis Manuales</a>
+            <ul class="nav-links">
+                <li><a href="actividad1.html">Act. 1</a></li>
+                <li><a href="actividad2.html">Act. 2</a></li>
+                <li><a href="manual-3.html">Act. 3</a></li>
+                <li><a href="manual-4.html">Act. 4</a></li>
+                <li><a href="Actividad_5_Configuracion_Servicios.html">Act. 5</a></li>
+                <li><a href="A6_sistemas_operativos_nas.html">NAS – SO</a></li>
+                <li><a href="A6_copias_seguridad_nas.html">NAS – Backup</a></li>
+                <li><a href="A6_ftps_nas.html">NAS – FTPS</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 2. CONTENIDO -->
+    <main class="contenido-manual">
+        <article>
+
+            <header class="guia-header">
+                <h1>Actividad 3: Construcción de Latiguillos - Cable CAT 8 RJ45</h1>
+                <p class="subtitulo">Practicas Act 3 - Documentación</p>
+            </header>
+
+            <!-- INTRODUCCIÓN -->
+            <section class="guia-seccion">
+                <h2>1. Introducción</h2>
+                <p>
+                    En esta actividad hemos construido un latiguillo de red utilizando cable de categoría 8 (CAT 8) con conector RJ45.
+                    El proceso parte desde cero, con el cable sin pelar, siguiendo los estándares de cableado T568A y T568B.
+                </p>
+            </section>
+
+            <!-- MATERIALES -->
+            <section class="guia-seccion">
+                <h2>2. Materiales utilizados</h2>
+                <ul>
+                    <li>Cable de red CAT 8</li>
+                    <li>Conectores RJ45</li>
+                    <li>Embellecedor (boot)</li>
+                    <li>Pelacables</li>
+                    <li>Crimpadora</li>
+                    <li>Comprobador de red</li>
+                </ul>
+            </section>
+
+            <!-- ESTÁNDARES -->
+            <section class="guia-seccion">
+                <h2>3. Estándares de cableado T568A y T568B</h2>
+                <p>
+                    Para realizar el latiguillo seguimos el orden de colores marcado por los estándares T568A y T568B.
+                    Ambos extremos del cable llevan el mismo estándar (cable directo).
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Pin</th>
+                            <th>T568A</th>
+                            <th>T568B</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1</td><td>Blanco/Verde</td><td>Blanco/Naranja</td></tr>
+                        <tr><td>2</td><td>Verde</td><td>Naranja</td></tr>
+                        <tr><td>3</td><td>Blanco/Naranja</td><td>Blanco/Verde</td></tr>
+                        <tr><td>4</td><td>Azul</td><td>Azul</td></tr>
+                        <tr><td>5</td><td>Blanco/Azul</td><td>Blanco/Azul</td></tr>
+                        <tr><td>6</td><td>Naranja</td><td>Verde</td></tr>
+                        <tr><td>7</td><td>Blanco/Marrón</td><td>Blanco/Marrón</td></tr>
+                        <tr><td>8</td><td>Marrón</td><td>Marrón</td></tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- PASOS -->
+            <section class="guia-seccion">
+                <h2>4. Proceso de construcción</h2>
+
+                <h3>Paso 1 - Insertar el embellecedor</h3>
+                <p>
+                    Antes de pelar el cable, insertamos el embellecedor por el extremo. Es importante hacerlo en este momento
+                    porque después ya no se puede poner sin deshacer el conector.
+                </p>
+                <img src="images3/imagen-005.jpg">
+                <h3>Paso 2 - Pelar el cable</h3>
+                <p>
+                    Pelamos la cubierta exterior del cable y separamos los cuatro pares trenzados que hay dentro.
+                </p>
+                <img src="images3/imagen-006.jpg">
+                <h3>Paso 3 - Ordenar los pares</h3>
+                <p>
+                    Ordenamos los ocho hilos siguiendo el código de colores del estándar T568A o T568B, aplanándolos
+                    y cortando las puntas para que queden a la misma altura.
+                </p>
+                <img src="images3/imagen-007.jpg">
+                <h3>Paso 4 - Insertar en el conector y crimpar</h3>
+                <p>
+                    Introducimos los hilos ordenados en el conector RJ45, comprobamos que llegan al fondo, y
+                    crimpamos con la herramienta hasta que los pines queden fijados.
+                </p>
+                <img src="images3/imagen-008.jpg">
+                <h3>Paso 5 - Colocar el embellecedor y repetir</h3>
+                <p>
+                    Deslizamos el embellecedor sobre el conector y repetimos todo el proceso en el otro extremo del cable.
+                </p>
+                <img src="images3/imagen-009.jpg">
+            </section>
+
+            <!-- VÍDEO -->
+            <section class="guia-seccion">
+                <h2>5. Vídeo del proceso</h2>
+                <p>A continuación se puede ver el proceso completo de construcción del latiguillo:</p>
+                <div class="video-wrapper">
+                    <video controls>
+                        <source src="WhatsApp Video 2026-05-19 at 13.42.54.mp4" type="video/mp4">
+                        Tu navegador no soporta la reproducción de vídeo.
+                    </video>
+                </div>
+            </section>
+
+            <!-- RESULTADO -->
+            <section class="guia-seccion">
+                <h2>6. Resultado</h2>
+                <p>
+                    El cable quedó correctamente terminado con los conectores RJ45 crimpados en ambos extremos
+                    y el embellecedor colocado. Al pasarlo por el comprobador de red todos los pines dieron continuidad correcta.
+                </p>
+            </section>
+
+            <!-- AUTORES -->
+            <section class="guia-seccion">
+                <h2>7. Autores</h2>
+                <p>Daniel C. / Bruno I. / Rodrigo G.</p>
+            </section>
+
+        </article>
+    </main>
+
+    <!-- 3. PIE DE PÁGINA -->
+    <footer class="footer">
+        <p>&copy; 2026 - Creado por Bruno, Rodrigo y Compañero. Todos los derechos reservados.</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aplicaciones FTPS para NAS</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+  <header>
+    <p class="actividad">Actividad 6: Investigación NAS</p>
+    <h1>Aplicaciones FTPS para NAS</h1>
+    <p class="autores">Daniel C · Bruno I · Rodrigo G</p>
+  </header>
+
+  <!-- ── Header ─────────────────────────────────────────────── -->
+ <header>
+       <p class="autores">Daniel Cantos / Bruno Ibáñez / Rodrigo García</p>
+        <nav class="navbar">
+            <a href="index.html" style="color:white; text-decoration:none; font-weight:bold; font-size:18px;">Mis Manuales</a>
+            <ul class="nav-links">
+                <li><a href="actividad1.html">Act. 1</a></li>
+                <li><a href="actividad2.html">Act. 2</a></li>
+                <li><a href="manual-3.html">Act. 3</a></li>
+                <li><a href="manual-4.html">Act. 4</a></li>
+                <li><a href="Actividad_5_Configuracion_Servicios.html">Act. 5</a></li>
+                <li><a href="A6_sistemas_operativos_nas.html">NAS – SO</a></li>
+                <li><a href="A6_copias_seguridad_nas.html">NAS – Backup</a></li>
+                <li><a href="A6_ftps_nas.html">NAS – FTPS</a></li>
+            </ul>
+        </nav>
+    </header>
+
+  <main>
+
+    <section id="introduccion">
+      <h2>1. Introducción</h2>
+      <p>FTPS es un protocolo de transferencia segura de archivos que combina FTP con cifrado SSL/TLS, ampliamente usado en entornos domésticos y empresariales con NAS. Este documento evalúa las principales aplicaciones cliente FTPS disponibles —analizando compatibilidad, facilidad de uso y funciones avanzadas— para ayudar a elegir la más adecuada según el caso de uso.</p>
+    </section>
+
+    <section id="que-es">
+      <h2>2. ¿Qué es FTPS?</h2>
+      <p>FTPS tiene dos modos de operación:</p>
+      <ul>
+        <li><strong>Explícito:</strong> se conecta por el puerto 21 y solicita el cifrado mediante AUTH TLS, siendo el modo más recomendado actualmente.</li>
+        <li><strong>Implícito:</strong> usa el puerto 990 con cifrado activo desde el primer momento.</li>
+      </ul>
+      <p>Su principal ventaja frente a FTP estándar es que protege tanto las credenciales como los datos en tránsito, siendo una buena alternativa cuando SFTP no está disponible.</p>
+    </section>
+
+    <section id="aplicaciones">
+      <h2>3. Aplicaciones Analizadas</h2>
+
+      <article>
+        <h3>3.1 FileZilla</h3>
+        <p>La más popular a nivel mundial, multiplataforma y gratuita. Ofrece interfaz de doble panel, soporte de certificados autofirmados y transferencias paralelas. Su limitación es que no incluye automatización nativa de tareas.</p>
+      </article>
+
+      <article>
+        <h3>3.2 WinSCP</h3>
+        <p>Exclusiva de Windows, destaca por su integración con PowerShell y scripts .NET, lo que la convierte en la opción preferida en entornos corporativos. Incluye sincronización bidireccional de directorios.</p>
+      </article>
+
+      <article>
+        <h3>3.3 Cyberduck</h3>
+        <p>Orientada a macOS con soporte nativo para Apple Silicon, aunque también disponible en Windows. Permite conectar con servicios en la nube como S3 o Google Drive además de FTPS, y puede montar el NAS como unidad de red del sistema.</p>
+      </article>
+
+      <article>
+        <h3>3.4 Beyond Compare</h3>
+        <p>Herramienta comercial enfocada en la comparación de archivos. Su módulo FTPS permite ver exactamente qué difiere entre el equipo local y el NAS antes de transferir, ideal para auditorías y verificación de backups.</p>
+      </article>
+
+      <article>
+        <h3>3.5 lftp</h3>
+        <p>El cliente de línea de comandos más completo para Linux y macOS. Soporta scripts, cron, mirroring de directorios y reanudación de transferencias, siendo la herramienta de referencia para administradores de sistemas.</p>
+      </article>
+    </section>
+
+    <section id="comparativa">
+      <h2>4. Tabla Comparativa de Aplicaciones</h2>
+      <p>A continuación se presenta un resumen comparativo de las aplicaciones evaluadas:</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Aplicación</th>
+            <th>Plataforma</th>
+            <th>Protocolo</th>
+            <th>Licencia</th>
+            <th>Característica Clave</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>FileZilla</td>
+            <td>Win / Mac / Linux</td>
+            <td>FTP, FTPS, SFTP</td>
+            <td>Gratuita</td>
+            <td>Interfaz doble panel, certificados autofirmados</td>
+          </tr>
+          <tr>
+            <td>WinSCP</td>
+            <td>Windows</td>
+            <td>FTP, FTPS, SFTP, SCP</td>
+            <td>Gratuita</td>
+            <td>Automatización PowerShell/.NET</td>
+          </tr>
+          <tr>
+            <td>Cyberduck</td>
+            <td>Win / Mac</td>
+            <td>FTP, FTPS, S3, WebDAV</td>
+            <td>Gratuita/Pago</td>
+            <td>Multi-protocolo, Apple Silicon nativo</td>
+          </tr>
+          <tr>
+            <td>Beyond Compare</td>
+            <td>Win / Mac / Linux</td>
+            <td>FTP, FTPS</td>
+            <td>Comercial</td>
+            <td>Comparación visual de directorios</td>
+          </tr>
+          <tr>
+            <td>lftp</td>
+            <td>Linux / Mac / WSL2</td>
+            <td>FTP, FTPS, SFTP</td>
+            <td>Gratuita</td>
+            <td>Scripting avanzado, cron, mirroring</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="configuracion">
+      <h2>5. Configuración FTPS en NAS Populares</h2>
+      <p>La mayoría de los NAS domésticos y profesionales incluyen soporte FTPS nativo que debe habilitarse desde su panel de administración. A continuación se describen los pasos generales para los sistemas más extendidos:</p>
+
+      <article>
+        <h3>5.1 Synology DSM</h3>
+        <p>En Synology DiskStation Manager, el servicio FTPS se habilita desde <em>Panel de control &gt; Servicios de archivos &gt; FTP</em>. Se debe marcar la opción "Habilitar FTP sobre SSL/TLS (FTPS)" y configurar el rango de puertos pasivos para compatibilidad con firewalls. Se recomienda generar un certificado desde el Gestor de Certificados o importar uno propio firmado por una CA de confianza.</p>
+      </article>
+
+      <article>
+        <h3>5.2 QNAP QTS</h3>
+        <p>En QNAP QTS, el servidor FTP se configura desde <em>Panel de control &gt; Servicios de red &gt; FTP</em>. La opción FTPS se activa marcando "Permitir FTP seguro". Es importante habilitar el modo pasivo (PASV) y definir el rango de puertos correspondiente en el router o firewall para garantizar el correcto funcionamiento de las transferencias de datos.</p>
+      </article>
+
+      <article>
+        <h3>5.3 TrueNAS / FreeNAS</h3>
+        <p>En TrueNAS, el servicio FTP se gestiona desde <em>Services &gt; FTP</em>. La opción TLS se habilita en la configuración avanzada del servicio, donde además se puede seleccionar el certificado SSL a utilizar. Se recomienda usar un certificado generado con Let's Encrypt a través del sistema de certificados integrado de TrueNAS.</p>
+      </article>
+    </section>
+
+    <section id="recomendaciones">
+      <h2>6. Recomendaciones por Perfil de Usuario</h2>
+      <p>La elección de la aplicación FTPS más adecuada depende del perfil del usuario y del entorno de uso:</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Perfil</th>
+            <th>Aplicación Recomendada</th>
+            <th>Motivo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Usuario doméstico</td>
+            <td>FileZilla</td>
+            <td>Gratuito, multiplataforma, fácil de configurar y amplia documentación en línea</td>
+          </tr>
+          <tr>
+            <td>Administrador Windows</td>
+            <td>WinSCP</td>
+            <td>Automatización con PowerShell, scripting avanzado y sincronización robusta</td>
+          </tr>
+          <tr>
+            <td>Usuario macOS</td>
+            <td>Cyberduck</td>
+            <td>Integración nativa con macOS, Apple Silicon y llavero del sistema</td>
+          </tr>
+          <tr>
+            <td>Auditoría / Backup</td>
+            <td>Beyond Compare</td>
+            <td>Comparación visual antes de sincronizar, ideal para verificar integridad</td>
+          </tr>
+          <tr>
+            <td>Sysadmin Linux</td>
+            <td>lftp</td>
+            <td>Scripting, cron jobs, mirroring y control total desde terminal</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="seguridad">
+      <h2>7. Consideraciones de Seguridad</h2>
+      <p>Al implementar FTPS en un NAS conviene seguir algunas buenas prácticas:</p>
+      <ul>
+        <li>Usar TLS 1.2 o 1.3 y desactivar versiones antiguas como SSLv3 o TLS 1.0</li>
+        <li>Emplear certificados de una CA reconocida o, en entornos domésticos, los gratuitos de Let's Encrypt</li>
+        <li>Restringir el acceso por firewall a las IPs autorizadas</li>
+        <li>Activar doble factor de autenticación cuando el NAS lo permita</li>
+        <li>Revisar los logs con regularidad para detectar accesos sospechosos</li>
+      </ul>
+      <p>Si el entorno lo permite, SFTP es una alternativa más moderna y segura al operar sobre un único puerto.</p>
+    </section>
+
+  </main>
+
+  <footer>
+    <h2>Bibliografía</h2>
+    <ul>
+      <li><strong>FileZilla:</strong> <a href="https://filezilla-project.org" target="_blank">Sitio oficial</a> · <a href="https://wiki.filezilla-project.org/FTP_over_TLS" target="_blank">FTP over TLS</a> · <a href="https://filezillapro.com/docs/v3/faq/what-is-ftps/" target="_blank">¿Qué es FTPS?</a></li>
+      <li><strong>WinSCP:</strong> <a href="https://winscp.net/eng/docs/start" target="_blank">Documentación</a> · <a href="https://winscp.net/eng/docs/guides" target="_blank">Guías</a></li>
+      <li><strong>Cyberduck:</strong> <a href="https://cyberduck.io" target="_blank">cyberduck.io</a></li>
+      <li><strong>Beyond Compare:</strong> <a href="https://www.scootersoftware.com" target="_blank">scootersoftware.com</a></li>
+      <li><strong>lftp:</strong> <a href="https://lftp.yar.ru" target="_blank">lftp.yar.ru</a></li>
+    </ul>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>

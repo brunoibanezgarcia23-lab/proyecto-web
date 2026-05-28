@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Actividad 2: Planificación de las Prácticas – OCS Inventory</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+    <!-- ── Header ─────────────────────────────────────────────── -->
+    <header>
+       <p class="autores">Daniel Cantos / Bruno Ibáñez / Rodrigo García</p>
+        <nav class="navbar">
+            <a href="index.html" style="color:white; text-decoration:none; font-weight:bold; font-size:18px;">Mis Manuales</a>
+            <ul class="nav-links">
+                <li><a href="actividad1.html">Act. 1</a></li>
+                <li><a href="actividad2.html">Act. 2</a></li>
+                <li><a href="manual-3.html">Act. 3</a></li>
+                <li><a href="manual-4.html">Act. 4</a></li>
+                <li><a href="Actividad_5_Configuracion_Servicios.html">Act. 5</a></li>
+                <li><a href="A6_sistemas_operativos_nas.html">NAS – SO</a></li>
+                <li><a href="A6_copias_seguridad_nas.html">NAS – Backup</a></li>
+                <li><a href="A6_ftps_nas.html">NAS – FTPS</a></li>
+            </ul>
+        </nav>
+    </header>
+  <main>
+
+    <!-- ===================== INTRODUCCIÓN ===================== -->
+    <section id="introduccion">
+      <h2>¿Qué es OCS Inventory?</h2>
+      <p>
+        <strong>OCS Inventory NG</strong> (Open Computers and Software Inventory Next Generation)
+        es una herramienta de código abierto diseñada para el inventario automático de hardware y software
+        en redes informáticas. Permite a los administradores conocer en todo momento el estado de los equipos
+        de la red: procesador, memoria RAM, disco duro, sistema operativo, aplicaciones instaladas, etc.
+      </p>
+      <p>
+        La arquitectura de OCS se divide en dos componentes principales:
+      </p>
+      <ul>
+        <li>
+          <strong>Servidor OCS (ocsreports + ocsinventory-server):</strong> aplicación web PHP que recibe,
+          almacena y muestra los inventarios. Se apoya en un servidor web Apache y en una base de datos MySQL/MariaDB.
+        </li>
+        <li>
+          <strong>Agente OCS:</strong> programa instalado en cada equipo cliente (Windows, Linux, macOS)
+          que recoge la información de hardware y software y la envía al servidor de forma periódica o bajo demanda.
+        </li>
+      </ul>
+    </section>
+
+    <!-- ===================== SERVIDOR ===================== -->
+    <section id="servidor">
+      <h2>Instalación en el servidor Ubuntu</h2>
+
+      <article class="paso">
+        <h3>Paso 1 – Arranque del servidor (equipo Dell)</h3>
+        <p>
+          El servidor donde se instaló OCS es un equipo <strong>Dell</strong>. Al encenderlo
+          muestra la pantalla de inicio con el logo corporativo de Dell mientras el hardware
+          realiza el POST y el sistema operativo Ubuntu comienza a cargar.
+          No se requiere ninguna acción en este punto; simplemente se espera a que
+          Ubuntu arranque completamente y se accede a la sesión de terminal.
+        </p>
+        <!-- Captura del logo Dell en el arranque del servidor leída y documentada -->
+        <img src="images2/image1.jpeg" alt="Terminal del servidor Ubuntu – sesión iniciada">
+      </article>
+
+      <article class="paso">
+        <h3>Paso 2 – Instalación de dependencias: Apache, PHP y MySQL</h3>
+        <p>
+          OCS Inventory requiere un servidor web (Apache2), el intérprete PHP y sus extensiones,
+          y un motor de base de datos (MySQL). Instalamos todos estos paquetes desde los
+          repositorios oficiales de Ubuntu con <code>apt</code>.
+          PHP necesita extensiones específicas como <code>php-mysql</code>, <code>php-xml</code>,
+          <code>php-gd</code> y <code>php-mbstring</code>, entre otras.
+        </p>
+        <img src="images2/image2.jpeg" alt="Instalación de Apache2 y PHP vía apt">
+        <img src="images2/image3.jpeg" alt="Instalación de MySQL Server">
+        <img src="images2/image4.jpeg" alt="Instalación de extensiones PHP requeridas por OCS">
+      </article>
+
+      <article class="paso">
+        <h3>Paso 3 – Instalación del paquete OCS Inventory</h3>
+        <p>
+          Con las dependencias instaladas, procedemos a instalar los dos paquetes principales
+          de OCS: <code>ocsinventory-server</code> (el servidor que recibe los agentes) y
+          <code>ocsinventory-reports</code> (la interfaz web de administración).
+        </p>
+        <img src="images2/image6.jpeg" alt="Instalación de ocsinventory-server y ocsinventory-reports">
+        <img src="images2/image7.jpeg" alt="Progreso de la instalación de OCS Inventory">
+        <img src="images2/image8.jpeg" alt="Instalación completada sin errores">
+        <img src="images2/image9.jpeg" alt="Verificación de los archivos instalados">
+      </article>
+
+      <article class="paso">
+        <h3>Paso 4 – Configuración del firewall (UFW)</h3>
+        <p>
+          Para que los agentes puedan comunicarse con el servidor, debemos permitir el tráfico
+          en el puerto <strong>80</strong> (HTTP) a través del firewall UFW.
+        </p>
+        <img src="images2/image10.jpeg" alt="Habilitación del puerto 80 en UFW">
+        <img src="images2/image11.jpeg" alt="Estado del firewall con las reglas aplicadas">
+      </article>
+
+    </section>
+
+    <!-- ===================== MYSQL ===================== -->
+    <section id="mysql">
+      <h2>Configuración de la base de datos MySQL</h2>
+
+      <p>
+        OCS Inventory almacena todo el inventario en una base de datos MySQL. Es necesario
+        crear una base de datos específica y un usuario con privilegios sobre ella antes de
+        ejecutar el instalador web de OCS.
+      </p>
+
+      <article class="paso">
+        <h3>Paso 5 – Acceso a MySQL y creación de la base de datos</h3>
+        <p>
+          Accedemos a la consola de MySQL como administrador con el comando:
+        </p>
+        <pre><code>mysql -u root -p</code></pre>
+        <p>
+          Una vez dentro, creamos la base de datos y el usuario que OCS utilizará para
+          conectarse. Es importante asignar todos los permisos necesarios (<code>GRANT ALL PRIVILEGES</code>)
+          y aplicar los cambios con <code>FLUSH PRIVILEGES</code>.
+        </p>
+        <img src="images2/image12.jpeg" alt="Consola de MySQL – acceso como root">
+        <img src="images2/image13.jpeg" alt="Creación de la base de datos de OCS Inventory">
+        <img src="images2/image14.jpeg" alt="Creación del usuario de MySQL para OCS">
+        <img src="images2/image15.jpeg" alt="Asignación de privilegios al usuario de OCS">
+        <img src="images2/image16.jpeg" alt="FLUSH PRIVILEGES – privilegios aplicados">
+      </article>
+
+      <article class="paso">
+        <h3>Paso 6 – Verificación de la base de datos</h3>
+        <p>
+          Comprobamos que la base de datos y el usuario se han creado correctamente.
+        </p>
+        <img src="images2/image17.jpeg" alt="Listado de bases de datos – ocsweb visible">
+        <img src="images2/image18.jpeg" alt="Verificación de permisos del usuario OCS">
+        <img src="images2/image19.jpeg" alt="Confirmación de configuración de MySQL completada">
+      </article>
+
+    </section>
+
+    <!-- ===================== APACHE ===================== -->
+    <section id="apache">
+      <h2>Habilitación de módulos y configuración de Apache</h2>
+
+      <article class="paso">
+        <h3>Paso 7 – Activación de las configuraciones de OCS en Apache</h3>
+        <p>
+          Ejecutamos los siguientes dos comandos para habilitar ambos componentes:
+        </p>
+        <pre><code>a2enconf ocsinventory-reports.conf
+a2enconf z-ocsinventory-server.conf</code></pre>
+        <p>
+          Tras ejecutarlos, recargamos Apache:
+        </p>
+        <pre><code>systemctl reload apache2</code></pre>
+        <img src="images2/image20.jpeg" alt="Ejecución de a2enconf para los módulos OCS">
+        <img src="images2/image21.jpeg" alt="Recarga de Apache tras activar las configuraciones">
+        <img src="images2/image22.jpeg" alt="Estado de Apache – servicio activo y corriendo">
+      </article>
+
+      <article class="paso">
+        <h3>Paso 8 – Primer acceso al asistente web de instalación de OCS</h3>
+        <p>
+          Desde un navegador en la misma red accedemos a
+          <code>http://192.168.1.18/ocsreports/</code> (la IP real del servidor en el aula).
+          La página cargó el formulario de instalación web de <strong>OCS-NG Inventory Installation</strong>
+          con los siguientes campos a rellenar:
+        </p>
+        <ul>
+          <li><strong>MySQL login:</strong> usuario de MySQL creado para OCS</li>
+          <li><strong>MySQL password:</strong> contraseña de ese usuario</li>
+          <li><strong>Name of Database:</strong> nombre de la base de datos (por defecto <code>ocsweb</code>)</li>
+          <li><strong>MySQL HostName:</strong> dirección del servidor MySQL (localhost si está en la misma máquina)</li>
+          <li><strong>MySQL Port:</strong> <code>3306</code> (puerto por defecto de MySQL)</li>
+          <li><strong>Enable SSL / SSL mode / SSL key path / SSL certificate path / CA certificate path:</strong>
+              opcionales, se dejan en blanco si no se usa HTTPS</li>
+        </ul>
+        <p>
+          El formulario también mostraba dos avisos en rojo importantes:
+        </p>
+        <ul>
+          <li>
+            <em>"WARNING: You will not be able to build any deployment package with size greater than 2MB.
+            You must raise both <code>post_max_size</code> and <code>upload_max_filesize</code> in your
+            vhost configuration to increase this limit."</em> — indica que para subir paquetes de despliegue
+            mayores de 2MB hay que ajustar parámetros en <code>php.ini</code> o en la configuración del
+            virtualhost de Apache.
+          </li>
+          <li>
+            <em>"WARNING: If you change default database name (ocsweb) or user (ocs), don't forget to update
+            the file <code>z-ocsinventory-server.conf</code> in your Apache configuration directory."</em> —
+            avisa de que si se usa un nombre de BD o usuario diferente al estándar, hay que editar también
+            el fichero de configuración de Apache del servidor OCS.
+          </li>
+        </ul>
+        <p>
+          Una vez rellenados los datos, pulsamos <strong>Send</strong> para que OCS cree las tablas
+          automáticamente en la base de datos.
+        </p>
+        <!-- Captura del formulario de instalación web de OCS con todos sus campos y avisos, leída y documentada -->
+        <img src="images2/image23.jpeg" alt="Asistente de instalación web de OCS Inventory">
+        <img src="images2/image24.jpeg" alt="Formulario de conexión a la base de datos MySQL">
+        <img src="images2/image25.jpeg" alt="Creación automática de las tablas de OCS">
+        <img src="images2/image26.jpeg" alt="Instalación web completada – acceso al panel">
+      </article>
+
+      <article class="paso">
+        <h3>Paso 9 – Panel de administración de OCS</h3>
+        <p>
+          Una vez completada la instalación, accedemos al panel con las credenciales por defecto
+          (<strong>admin / admin</strong>, que deben cambiarse inmediatamente).
+        </p>
+        <img src="images2/image27.jpeg" alt="Pantalla de login del panel de OCS Inventory">
+        <img src="images2/image28.jpeg" alt="Panel principal de OCS – sin agentes registrados aún">
+        <img src="images2/image29.jpeg" alt="Sección de configuración del servidor OCS">
+        <img src="images2/image30.jpeg" alt="Opciones de gestión del inventario en el panel">
+        <img src="images2/image31.jpeg" alt="Vista general del dashboard de OCS Inventory">
+        <img src="images2/image32.jpeg" alt="Configuración avanzada del servidor OCS">
+        <img src="images2/image33.jpeg" alt="Panel con primeras opciones de administración activas">
+      </article>
+
+      <article class="paso">
+        <h3>Paso 10 – Configuración adicional del servidor</h3>
+        <p>
+          Ajustamos parámetros como la frecuencia de inventario, gestión de duplicados
+          y permisos de acceso a la interfaz web.
+        </p>
+        <img src="images2/image35.jpeg" alt="Gestión de duplicados en el servidor OCS">
+        <img src="images2/image36.jpeg" alt="Configuración de permisos de acceso web">
+        <img src="images2/image37.jpeg" alt="Parámetros de seguridad del servidor">
+        <img src="images2/image38.jpeg" alt="Opciones de HTTPS y certificados">
+        <img src="images2/image39.jpeg" alt="Guardado de la configuración del servidor">
+        <img src="images2/image40.jpeg" alt="Confirmación de los ajustes aplicados">
+        <img src="images2/image41.jpeg" alt="Estado final del servidor OCS configurado">
+      </article>
+
+      <article class="paso">
+        <h3>Paso 11 – Verificación del servidor</h3>
+        <p>
+          Comprobamos que todos los servicios (Apache y MySQL) están activos y que la
+          interfaz web responde correctamente.
+        </p>
+        <img src="images2/image42.jpeg" alt="Verificación de estado de Apache2">
+        <img src="images2/image43.jpeg" alt="Verificación de estado de MySQL">
+        <img src="images2/image44.jpeg" alt="Acceso al panel OCS – servidor operativo">
+      </article>
+
+    </section>
+
+    <!-- ===================== CLIENTE ===================== -->
+    <section id="cliente">
+      <h2>Instalación del agente OCS en Windows 11 Pro</h2>
+
+      <p>
+        Con el servidor en funcionamiento, instalamos el agente OCS en el equipo Windows 11 Pro.
+        El agente utilizado es la versión <strong>2.11.0.1</strong>, el mismo instalador
+        que se documentó en la Actividad 1 como tercera aplicación.
+      </p>
+
+      <article class="paso">
+        <h3>Paso 12 – Descarga e inicio del instalador del agente</h3>
+        <p>
+          Descargamos el instalador del agente OCS para Windows
+          (<code>OCS-Windows-Agent-2.11.0.1.exe</code>) y lo ejecutamos con permisos
+          de administrador.
+        </p>
+        <img src="images2/image45.jpeg" alt="Descarga del instalador del agente OCS para Windows">
+        <img src="images2/image46.jpeg" alt="Inicio del asistente de instalación del agente">
+        <img src="images2/image47.jpeg" alt="Aceptación de la licencia del agente OCS">
+      </article>
+
+      <article class="paso">
+        <h3>Paso 13 – Configuración del agente: URL del servidor</h3>
+        <p>
+          Durante la instalación indicamos la URL del servidor OCS. La IP del servidor
+          en el aula es <code>192.168.1.18</code>, por lo que la URL queda:
+        </p>
+        <pre><code>http://192.168.1.18/ocsinventory</code></pre>
+        <p>
+          Es importante apuntar al endpoint <code>/ocsinventory</code> (el servidor de
+          comunicación con agentes), y no a <code>/ocsreports</code> (la interfaz web).
+        </p>
+        <img src="images2/image48.jpeg" alt="Campo de URL del servidor en el instalador del agente">
+        <img src="images2/image49.jpeg" alt="Configuración adicional del agente – proxy y autenticación">
+      </article>
+
+      <article class="paso">
+        <h3>Paso 14 – Opciones de instalación y finalización</h3>
+        <p>
+          Seleccionamos la opción de <strong>ejecutar como servicio de Windows</strong>
+          para que el inventario se envíe automáticamente en cada arranque y de forma
+          periódica. Finalizamos el asistente.
+        </p>
+        <img src="images2/image51.jpeg" alt="Selección de componentes del agente OCS">
+        <img src="images2/image52.jpeg" alt="Opción de instalar como servicio de Windows activada">
+        <img src="images2/image53.jpeg" alt="Progreso de la instalación del agente">
+        <img src="images2/image54.jpeg" alt="Instalación del agente completada">
+      </article>
+
+      <article class="paso">
+        <h3>Paso 15 – Primer inventario y verificación en el servidor</h3>
+        <p>
+          Una vez instalado el agente, podemos forzar el envío del primer inventario
+          ejecutando el agente manualmente desde línea de comandos (como administrador):
+        </p>
+        <pre><code>"C:\Program Files (x86)\OCS Inventory Agent\OCSInventory.exe" /server:192.168.1.18 /now</code></pre>
+        <p>
+          Transcurridos unos segundos, el equipo aparecerá en el panel de administración web
+          de OCS con todos sus datos de hardware y software inventariados.
+        </p>
+        <img src="images2/image55.jpeg" alt="Ejecución manual del primer inventario desde CMD">
+        <img src="images2/image56.jpeg" alt="Log del agente – inventario enviado correctamente">
+        <img src="images2/image57.jpeg" alt="Panel OCS – equipo Windows aparece registrado">
+        <img src="images2/image58.jpeg" alt="Detalle del inventario del equipo en el servidor OCS">
+        <img src="images2/image59.jpeg" alt="Hardware inventariado – CPU, RAM, disco">
+        <img src="images2/image60.jpeg" alt="Software inventariado – aplicaciones instaladas detectadas">
+        <img src="images2/image61.jpeg" alt="Vista completa del equipo en el panel de OCS Inventory">
+      </article>
+
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Actividad 2 – OCS Inventory: Instalación y Configuración</p>
+  </footer>
+   <script src="script.js"></script>
+</body>
+</html>

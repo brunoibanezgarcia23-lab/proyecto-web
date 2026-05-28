@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Copias de Seguridad en NAS</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+   <!-- ── Header ─────────────────────────────────────────────── -->
+ <header>
+       <p class="autores">Daniel Cantos / Bruno Ibáñez / Rodrigo García</p>
+        <nav class="navbar">
+            <a href="index.html" style="color:white; text-decoration:none; font-weight:bold; font-size:18px;">Mis Manuales</a>
+            <ul class="nav-links">
+                <li><a href="actividad1.html">Act. 1</a></li>
+                <li><a href="actividad2.html">Act. 2</a></li>
+                <li><a href="manual-3.html">Act. 3</a></li>
+                <li><a href="manual-4.html">Act. 4</a></li>
+                <li><a href="Actividad_5_Configuracion_Servicios.html">Act. 5</a></li>
+                <li><a href="A6_sistemas_operativos_nas.html">NAS – SO</a></li>
+                <li><a href="A6_copias_seguridad_nas.html">NAS – Backup</a></li>
+                <li><a href="A6_ftps_nas.html">NAS – FTPS</a></li>
+            </ul>
+        </nav>
+    </header>
+
+  <main>
+
+    <section id="introduccion">
+      <h2>1. Introducción</h2>
+      <p>Las copias de seguridad son esenciales para proteger los datos almacenados en un NAS: documentos, bases de datos y configuraciones. Su pérdida por fallo de hardware, error humano o ransomware puede tener consecuencias graves. Implementar una buena política requiere definir qué se copia, con qué frecuencia, dónde y cómo se verifica.</p>
+    </section>
+
+    <section id="regla321">
+      <h2>2. La Regla 3-2-1</h2>
+      <p>El estándar de referencia en protección de datos establece: <strong>3 copias</strong> de los datos, en <strong>2 soportes diferentes</strong>, con <strong>1 copia fuera del sitio</strong>. En un NAS esto se consigue combinando el almacenamiento local, un disco externo o segundo NAS, y una copia en la nube.</p>
+    </section>
+
+    <section id="tipos">
+      <h2>3. Tipos de Copia de Seguridad</h2>
+      <p>Existen tres tipos principales de copias de seguridad, cada uno con sus ventajas e inconvenientes:</p>
+
+      <article>
+        <h3>3.1 Copia Completa</h3>
+        <p>Guarda todos los datos en cada ejecución. Es la más sencilla de restaurar, pero ocupa mucho espacio de almacenamiento y requiere más tiempo de ejecución.</p>
+      </article>
+
+      <article>
+        <h3>3.2 Copia Incremental</h3>
+        <p>Solo guarda los cambios producidos desde la última copia (sea del tipo que sea). Es la más rápida de realizar y ocupa menos espacio, pero la restauración puede ser más lenta al requerir encadenar varias copias.</p>
+      </article>
+
+      <article>
+        <h3>3.3 Copia Diferencial</h3>
+        <p>Guarda todos los cambios desde la última copia completa. Representa un punto intermedio entre la completa y la incremental: ocupa más que la incremental pero la restauración es más sencilla.</p>
+      </article>
+    </section>
+
+    <section id="herramientas">
+      <h2>4. Herramientas de Copia de Seguridad en NAS</h2>
+      <p>Cada sistema NAS tiene su propia herramienta de gestión de copias de seguridad. A continuación se describen las principales:</p>
+
+      <article>
+        <h3>4.1 Synology Hyper Backup (DSM)</h3>
+        <p>Herramienta integrada en Synology DiskStation Manager. Permite realizar copias hacia discos locales, NAS remotos y servicios en la nube con cifrado AES-256. Soporta los tres tipos de copia y permite programar tareas automáticas.</p>
+      </article>
+
+      <article>
+        <h3>4.2 Replicación ZFS (TrueNAS SCALE)</h3>
+        <p>TrueNAS SCALE utiliza replicación ZFS, que replica snapshots de forma incremental hacia otros sistemas mediante SSH. Es especialmente eficiente para grandes volúmenes de datos gracias a la deduplicación y compresión nativa de ZFS.</p>
+      </article>
+
+      <article>
+        <h3>4.3 Rsync (OpenMediaVault)</h3>
+        <p>OpenMediaVault se apoya en rsync, que transfiere solo los bloques modificados, reduciendo el uso de ancho de banda y el tiempo de copia. Puede automatizarse con tareas programadas y es compatible con servidores remotos.</p>
+      </article>
+    </section>
+
+    <section id="snapshots">
+      <h2>5. Snapshots</h2>
+      <p>Un snapshot es una fotografía del estado del sistema de archivos en un momento concreto. No sustituye a la copia de seguridad, ya que reside en el mismo disco, pero permite recuperar archivos borrados o modificados accidentalmente de forma muy rápida.</p>
+      <p>Una política habitual de retención de snapshots es:</p>
+      <ul>
+        <li>Uno cada hora durante las últimas 24 horas</li>
+        <li>Uno diario durante los últimos 7 días</li>
+        <li>Uno semanal durante el último mes</li>
+      </ul>
+    </section>
+
+    <section id="nube">
+      <h2>6. Copias en la Nube</h2>
+      <p>La nube cubre el requisito de la copia fuera del sitio establecido por la regla 3-2-1. Los proveedores más utilizados en entornos NAS son:</p>
+      <ul>
+        <li><strong>Backblaze B2:</strong> bajo coste y buen rendimiento para grandes volúmenes</li>
+        <li><strong>Amazon S3:</strong> alta disponibilidad y ecosistema maduro de herramientas</li>
+        <li><strong>Wasabi:</strong> alternativa económica a S3 con compatibilidad de API</li>
+      </ul>
+      <p>Antes de subir los datos es fundamental cifrarlos con herramientas como <strong>Duplicati</strong> o <strong>Rclone</strong> para garantizar que ningún proveedor externo pueda acceder a la información.</p>
+    </section>
+
+    <section id="verificacion">
+      <h2>7. Verificación y Política de Retención</h2>
+      <p>Una copia de seguridad no verificada no es fiable. Es necesario comprobar periódicamente su integridad y realizar pruebas de restauración reales al menos una vez al trimestre.</p>
+      <p>Un esquema de retención habitual (modelo abuelo-padre-hijo) es:</p>
+      <ul>
+        <li>Copias <strong>diarias:</strong> conservar durante 7 días</li>
+        <li>Copias <strong>semanales:</strong> conservar durante 4 semanas</li>
+        <li>Copias <strong>mensuales:</strong> conservar entre 6 y 12 meses</li>
+      </ul>
+    </section>
+
+    <section id="conclusion">
+      <h2>8. Conclusión</h2>
+      <p>Una buena estrategia de copias de seguridad combina snapshots locales frecuentes, copias incrementales automatizadas y una copia cifrada en la nube. Aplicar la regla 3-2-1 y verificar regularmente las copias convierte la protección de datos en algo real y no solo teórico.</p>
+    </section>
+
+  </main>
+
+  <footer>
+    <h2>Bibliografía</h2>
+    <ul>
+      <li><strong>Regla 3-2-1:</strong> <a href="https://www.backblaze.com/blog/the-3-2-1-backup-strategy/" target="_blank">backblaze.com</a></li>
+      <li><strong>Synology Hyper Backup:</strong> <a href="https://kb.synology.com/en-us/DSM/tutorial/Quick_Start_Hyper_Backup" target="_blank">Quick Start</a> · <a href="https://www.synology.com/en-global/dsm/feature/hyper_backup" target="_blank">Feature page</a></li>
+      <li><strong>TrueNAS SCALE – Replicación ZFS:</strong> <a href="https://www.truenas.com/docs/scale/scaletutorials/dataprotection/replication/" target="_blank">truenas.com/docs</a></li>
+      <li><strong>OpenMediaVault – Rsync:</strong> <a href="https://docs.openmediavault.org/en/latest/administration/services/rsync.html" target="_blank">docs.openmediavault.org</a></li>
+      <li><strong>Rclone:</strong> <a href="https://rclone.org/docs/" target="_blank">rclone.org/docs</a></li>
+      <li><strong>Backblaze B2:</strong> <a href="https://www.backblaze.com/cloud-storage" target="_blank">backblaze.com/cloud-storage</a></li>
+      <li><strong>Amazon S3:</strong> <a href="https://docs.aws.amazon.com/s3/" target="_blank">docs.aws.amazon.com/s3</a></li>
+    </ul>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>

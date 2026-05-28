@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Actividad 1: Preparación del Entorno</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+  <!-- ── Header ─────────────────────────────────────────────── -->
+ <header>
+       <p class="autores">Daniel Cantos / Bruno Ibáñez / Rodrigo García</p>
+        <nav class="navbar">
+            <a href="index.html" style="color:white; text-decoration:none; font-weight:bold; font-size:18px;">Mis Manuales</a>
+            <ul class="nav-links">
+                <li><a href="actividad1.html">Act. 1</a></li>
+                <li><a href="actividad2.html">Act. 2</a></li>
+                <li><a href="manual-3.html">Act. 3</a></li>
+                <li><a href="manual-4.html">Act. 4</a></li>
+                <li><a href="Actividad_5_Configuracion_Servicios.html">Act. 5</a></li>
+                <li><a href="A6_sistemas_operativos_nas.html">NAS – SO</a></li>
+                <li><a href="A6_copias_seguridad_nas.html">NAS – Backup</a></li>
+                <li><a href="A6_ftps_nas.html">NAS – FTPS</a></li>
+            </ul>
+        </nav>
+    </header>
+  <!-- ── Índice ─────────────────────────────────────────────── -->
+  <div class="toc-container">
+    <h2>Contenido</h2>
+    <ol>
+      <li><a href="#ubuntu">1. Instalación servidor Ubuntu en Wyse</a></li>
+      <li><a href="#windows">2. Instalación y configuración de W11 Pro en PC con 3 aplicaciones</a></li>
+    </ol>
+  </div>
+
+  <!-- ── Contenido principal ────────────────────────────────── -->
+  <main class="page-layout">
+
+    <!-- ===================== SECCIÓN 1: UBUNTU ===================== -->
+    <section id="ubuntu">
+      <h2>1. Instalación servidor Ubuntu en Wyse</h2>
+
+      <article>
+        <h3>Paso 1 – Acceso a la BIOS del Wyse</h3>
+        <p>Lo primero es entrar a la BIOS del Wyse (la tecla es <kbd>F12</kbd>). Tras esto en el Boot Sequence pones la contraseña que es siempre la misma.</p>
+        <img src="images1/image1.jpg" alt="BIOS Wyse">
+      </article>
+
+      <article>
+        <h3>Paso 2 – Orden de arranque y sistema de boot</h3>
+        <p>Seleccionamos el orden de USB primero. Una vez ya reiniciado el equipo se arrancará el sistema de boot.</p>
+        <img src="images1/image2.jpg" alt="Boot sequence USB">
+        <img src="images1/image3.jpg" alt="Sistema de boot">
+      </article>
+
+      <article>
+        <h3>Paso 3 – Selección de ISO y modo normal</h3>
+        <p>Tras seleccionar la ISO seleccionamos el <strong>Normal Mode</strong>.</p>
+        <img src="images1/image4.jpg" alt="Normal mode">
+      </article>
+
+      <article>
+        <h3>Paso 4 – Carga del sistema</h3>
+        <p>Y aparecerá una carga.</p>
+        <img src="images1/image5.jpg" alt="Carga del sistema">
+      </article>
+
+      <article>
+        <h3>Paso 5 – Inicio de la instalación de Linux</h3>
+        <p>Seleccionamos la instalación de Linux.</p>
+        <img src="images1/image6.jpg" alt="Instalación de Linux">
+        <img src="images1/image7.jpg" alt="Carga instalador">
+      </article>
+
+      <article>
+        <h3>Paso 6 – Idioma del sistema</h3>
+        <p>Seleccionamos el idioma. El siguiente paso lo saltamos y volvemos a confirmar el idioma del sistema.</p>
+        <img src="images1/image8.jpg" alt="Selección idioma">
+        <img src="images1/image9.jpg" alt="Paso saltado">
+        <img src="images1/image10.jpg" alt="Idioma del sistema">
+      </article>
+
+      <article>
+        <h3>Paso 7 – Configuración de red (DHCP)</h3>
+        <p>Saltamos el paso del proxy. Configuramos que pille red por <strong>DHCP</strong>. El siguiente paso lo saltamos también.</p>
+        <img src="images1/image11.jpg" alt="Configuración proxy">
+        <img src="images1/image12.jpg" alt="Red DHCP">
+        <img src="images1/image13.jpg" alt="Paso saltado">
+      </article>
+
+      <article>
+        <h3>Paso 8 – Formato del disco</h3>
+        <p>Saltamos los dos pasos siguientes y luego tuvimos que formatear el disco para meter el sistema sobre el sistema del Wyse.</p>
+        <img src="images1/image14.png" alt="Paso saltado">
+        <img src="images1/image15.png" alt="Paso saltado">
+        <img src="images1/image16.png" alt="Formatear disco">
+      </article>
+
+      <article>
+        <h3>Paso 9 – Creación de usuario</h3>
+        <p>Seleccionamos el nombre del usuario y asignamos la contraseña <strong>"Campusfp"</strong>.</p>
+        <img src="images1/image17.jpeg" alt="Nombre de usuario y contraseña">
+      </article>
+
+      <article>
+        <h3>Paso 10 – Finalización de la instalación</h3>
+        <p>Saltamos los pasos intermedios y no instalamos ningún servicio adicional. Solo falta acabar la instalación final del servidor.</p>
+        <img src="images1/image18.jpeg" alt="Paso saltado">
+        <img src="images1/image19.jpeg" alt="Paso saltado">
+        <img src="images1/image20.png" alt="Sin servicios adicionales">
+      </article>
+
+    </section>
+
+    <!-- ===================== SECCIÓN 2: WINDOWS 11 ===================== -->
+    <section id="windows">
+      <h2>2. Instalación y configuración de W11 Pro en PC con 3 aplicaciones</h2>
+
+      <article>
+        <h3>Paso 1 – Acceso a la BIOS</h3>
+        <p>Accedemos a la BIOS del ordenador.</p>
+        <img src="images1/image21.jpg" alt="BIOS ordenador">
+        <img src="images1/image22.jpg" alt="BIOS ordenador 2">
+      </article>
+
+      <article>
+        <h3>Paso 2 – Selección de ISO de Windows en Ventoy</h3>
+        <p>Seleccionamos la ISO de Windows en el menú de Ventoy.</p>
+        <img src="images1/image23.jpg" alt="Selección ISO Windows">
+      </article>
+
+      <article>
+        <h3>Paso 3 – Bootear la ISO</h3>
+        <p>Aquí le decimos que lo inicie de manera normal la ISO seleccionada. Eso es lo que significa bootear.</p>
+        <img src="images1/image24.jpg" alt="Bootear ISO">
+      </article>
+
+      <article>
+        <h3>Paso 4 – Inicio de la instalación de Windows</h3>
+        <p>Aquí como podemos ver es el inicio de la instalación de Windows donde seleccionamos el idioma, formato de hora y moneda y el teclado.</p>
+        <img src="images1/image25.jpg" alt="Inicio instalación Windows">
+        <img src="images1/image26.jpg" alt="Iniciando instalación">
+        <img src="images1/image27.jpg" alt="Iniciando instalación 2">
+      </article>
+
+      <article>
+        <h3>Paso 5 – Licencia, clave de producto y versión</h3>
+        <p>Nos salta el mensaje de aceptar los términos de licencia del software. Le decimos al programa de instalación que no tenemos clave del producto. Seleccionamos la versión <strong>Windows 11 Pro</strong>.</p>
+        <img src="images1/image28.jpg" alt="Términos de licencia">
+        <img src="images1/image29.jpg" alt="Sin clave de producto">
+        <img src="images1/image30.jpg" alt="Versión Windows 11 Pro">
+      </article>
+
+      <article>
+        <h3>Paso 6 – Tipo de instalación y particionado</h3>
+        <p>Seleccionamos el tipo de instalación personalizada para poder gestionar el disco manualmente. Seleccionamos el disco y lo eliminamos porque ya tenía un Windows instalado. Le volvemos a dar formato y por sí solo se divide en las partes que necesita el sistema.</p>
+        <img src="images1/image31.jpg" alt="Tipo de instalación">
+        <img src="images1/image32.jpg" alt="Selección de disco">
+        <img src="images1/image33.jpeg" alt="Formato disco">
+      </article>
+
+      <article>
+        <h3>Paso 7 – Proceso de instalación y reinicio</h3>
+        <p>Nos muestra el proceso por el que pasa la instalación y que todo está yendo correctamente. Cuando termina aparece un temporizador de 10 segundos y se reiniciará automáticamente el ordenador.</p>
+        <img src="images1/image34.jpg" alt="Proceso de instalación">
+        <img src="images1/image35.jpg" alt="Reinicio automático">
+        <img src="images1/image36.jpg" alt="Reiniciando">
+        <img src="images1/image37.jpg" alt="Reiniciado">
+      </article>
+
+      <article>
+        <h3>Paso 8 – Configuración inicial (OOBE)</h3>
+        <p>Nos pregunta si queremos agregar otra distribución al teclado — seleccionamos omitir. Seleccionamos el país o región y el idioma del teclado.</p>
+        <img src="images1/image38.jpg" alt="Distribución teclado">
+        <img src="images1/image39.jpg" alt="País o región">
+        <img src="images1/image40.jpg" alt="Idioma teclado">
+      </article>
+
+      <article>
+        <h3>Paso 9 – Nombre del dispositivo y actualizaciones</h3>
+        <p>Asignamos el nombre que queremos que lleve nuestro dispositivo. Windows comprueba e instala las actualizaciones disponibles. Seleccionamos que queremos configurarlo para <strong>uso profesional</strong>. Se aplican las configuraciones añadidas.</p>
+        <img src="images1/image41.jpg" alt="Nombre del dispositivo">
+        <img src="images1/image42.jpg" alt="Actualizaciones del sistema">
+        <img src="images1/image43.jpg" alt="Uso profesional">
+        <img src="images1/image44.jpg" alt="Aplicando configuraciones">
+      </article>
+
+      <article>
+        <h3>Paso 10 – Creación de usuario local</h3>
+        <p>Seleccionamos cómo queremos iniciar la sesión. Indicamos que vamos a estar en un dominio. Seleccionamos el usuario, establecemos la contraseña y la confirmamos.</p>
+        <img src="images1/image45.jpg" alt="Inicio de sesión">
+        <img src="images1/image46.jpg" alt="Dominio">
+        <img src="images1/image47.jpg" alt="Selección de usuario">
+        <img src="images1/image48.jpg" alt="Contraseña de usuario">
+        <img src="images1/image49.jpg" alt="Confirmación contraseña">
+      </article>
+
+      <article>
+        <h3>Paso 11 – Primer arranque de Windows</h3>
+        <p>Esta ventana es lo que muestra antes de iniciar por completo Windows. A continuación se muestra que se ha iniciado e instalado correctamente.</p>
+        <img src="images1/image50.jpg" alt="Iniciando Windows">
+        <img src="images1/image51.jpg" alt="Iniciando Windows 2">
+      </article>
+
+      <!-- APLICACIONES -->
+      <section id="aplicaciones">
+        <h2>Instalación de las 3 aplicaciones</h2>
+
+        <article>
+          <h3>Aplicación 1 – Cisco Packet Tracer</h3>
+          <p>A continuación se muestra la instalación de la aplicación de Cisco Packet Tracer siguiendo los pasos de las capturas.</p>
+          <img src="images1/image52.jpg" alt="Cisco Packet Tracer 1">
+          <img src="images1/image53.jpg" alt="Cisco Packet Tracer 2">
+          <img src="images1/image54.jpg" alt="Cisco Packet Tracer 3">
+          <img src="images1/image55.jpg" alt="Cisco Packet Tracer 4">
+          <img src="images1/image56.jpg" alt="Cisco Packet Tracer 5">
+          <img src="images1/image57.jpg" alt="Cisco Packet Tracer 6">
+          <img src="images1/image58.jpg" alt="Cisco Packet Tracer 7">
+          <img src="images1/image59.jpg" alt="Cisco Packet Tracer 8">
+          <img src="images1/image60.jpg" alt="Cisco Packet Tracer 9">
+        </article>
+
+        <article>
+          <h3>Aplicación 2 – Segunda aplicación</h3>
+          <p>En esta otra se muestra la segunda aplicación a instalar. Se siguen los mismos pasos que en la anterior.</p>
+          <img src="images1/image61.jpg" alt="Aplicación 2 - paso 1">
+          <img src="images1/image62.jpg" alt="Aplicación 2 - paso 2">
+          <img src="images1/image63.jpg" alt="Aplicación 2 - paso 3">
+          <img src="images1/image64.jpg" alt="Aplicación 2 - paso 4">
+          <img src="images1/image65.jpg" alt="Aplicación 2 - paso 5">
+        </article>
+
+        <article>
+          <h3>Aplicación 3 – Tercera aplicación</h3>
+          <p>Y en esta última instalación se muestra la tercera aplicación que nos pide la actividad. Se siguen los mismos pasos que en las anteriores.</p>
+          <img src="images1/image66.jpg" alt="Aplicación 3 - paso 1">
+          <img src="images1/image67.jpg" alt="Aplicación 3 - paso 2">
+          <img src="images1/image68.jpg" alt="Aplicación 3 - paso 3">
+          <img src="images1/image69.jpg" alt="Aplicación 3 - paso 4">
+          <img src="images1/image70.jpg" alt="Aplicación 3 - paso 5">
+          <img src="images1/image71.jpg" alt="Aplicación 3 - paso 6">
+          <img src="images1/image72.jpg" alt="Aplicación 3 - paso 7">
+          <img src="images1/image73.jpg" alt="Aplicación 3 - paso 8">
+          <img src="images1/image74.jpg" alt="Aplicación 3 - paso 9">
+        </article>
+
+      </section>
+
+    </section>
+
+  </main>
+
+  <!-- ── Footer ─────────────────────────────────────────────── -->
+  <footer class="site-footer">
+    <p>&copy; 2026 - Creado por Bruno, Rodrigo y Daniel. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
