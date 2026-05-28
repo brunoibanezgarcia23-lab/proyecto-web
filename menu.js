@@ -6,7 +6,7 @@ const SECTIONS = [
         num: "Act. 01",
         title: "Preparación del Entorno",
         desc: "Instalación del servidor Ubuntu en un equipo Wyse e instalación y configuración de Windows 11 Pro con tres aplicaciones.",
-        file: "manual-1 (1).html"
+        file: "manual-1.html"
       },
       {
         num: "Act. 02",
@@ -54,6 +54,12 @@ const SECTIONS = [
         title: "Aplicaciones FTPS para NAS",
         desc: "Comparativa de clientes FTPS: FileZilla, WinSCP, Cyberduck, Beyond Compare y lftp. Configuración en Synology, QNAP y TrueNAS.",
         file: "A6_ftps_nas.html"
+      },
+      {
+        num: "Act. 08",
+        title: "Craeción y Configuración del NAS",
+        desc: "Craeción y Configuración del NAS",
+        file: "manual-8.html"
       }
     ]
   }
