@@ -54,15 +54,20 @@ const SECTIONS = [
         title: "Aplicaciones FTPS para NAS",
         desc: "Comparativa de clientes FTPS: FileZilla, WinSCP, Cyberduck, Beyond Compare y lftp. Configuración en Synology, QNAP y TrueNAS.",
         file: "A6_ftps_nas.html"
-      },
+      }
+    ]
+  },
+   {
+    label: "Actividad 8 – NAS",
+    items: [
       {
-        num: "Act. 08",
-        title: "Craeción y Configuración del NAS",
-        desc: "Craeción y Configuración del NAS",
+        num: "Act. 08 · NAS",
+        title: "Creación y Configuración del NAS",
+        desc: "Creación y Configuración del NAS",
         file: "manual-8.html"
       }
     ]
-  }
+   }
 ];
 
 const main = document.getElementById("main");
